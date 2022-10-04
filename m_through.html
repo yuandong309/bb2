@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-cn" style="font-size: 104px;">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <title>校园卡</title>
+    <style>
+      body{
+        -webkit-text-size-adjust:100% !important;
+      }
+      .frame_load_img {
+        display: inline-block;
+        width: 50px;
+        animation: haha1 1.5s linear infinite;
+        -webkit-animation: haha1 1s linear infinite;
+      }
+      .frame-loader {
+        position: fixed;
+        z-index: 999;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+      }
+      @-webkit-keyframes haha1 {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+        25% {
+          -webkit-transform: rotate(90deg);
+        }
+        50% {
+          -webkit-transform: rotate(180deg);
+        }
+        75% {
+          -webkit-transform: rotate(270deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      #__vconsole .vc-content {
+        line-height: 12px;
+      }
+    </style>
+    <link rel="stylesheet" href="v2/static/externals/element-ui@2.13.0.min.css">
+    <link href="v2/static/css/chunk-vendors.css" rel="stylesheet">
+    <link href="v2/static/css/chunk-common.css" rel="stylesheet">
+    <link rel="shortcut icon" href="all/1/2847.png">
+    <link rel="stylesheet" type="text/css" href="v2/static/css/chunk.css">
+  </head>
+
+  <script>
+    function radioButtonOnClick(active, inactive) {
+      let activeSpan = document.getElementById(active);
+      let inactiveSpan = document.getElementById(inactive);
+      activeSpan.setAttribute("style", "background-color: #025098; border-color: #025098; color: #FFF;");
+      inactiveSpan.setAttribute("style", "background-color: #FFF; border-color: #DCDFE6; color: #606266;");
+    }
+  </script>
+  
+  <body class="site_mobile_common">
+    <div class="health_box">
+      <div id="color" class="green">
+        <div role="radiogroup" class="el-radio-group radioGroup">
+          <label role="radio" aria-checked="true" tabindex="0" class="el-radio-button is-active"
+          onclick="radioButtonOnClick('cxk-span', 'rxk-span')">
+            <input type="radio" tabindex="-1" class="el-radio-button__orig-radio" value="cxk">
+            <span class="el-radio-button__inner" id="cxk-span">出校码
+              <!----></span>
+          </label>
+          <label role="radio" tabindex="-1" class="el-radio-button"
+          onclick="radioButtonOnClick('rxk-span', 'cxk-span')">
+            <input type="radio" tabindex="-1" class="el-radio-button__orig-radio" value="rxk">
+            <span class="el-radio-button__inner" id="rxk-span">入校码
+              <!----></span>
+          </label>
+        </div>
+        <div class="health_con">
+          <img src="v2/static/img/bgjian.aa1b69b4.png" alt="" class="W_img">
+          <div class="health_head">
+            <p class="health_p">
+              <img src="v2/static/img/title.33abfbf8.png" alt="" class="heade_title">出校码</p>
+            <div class="headlth_date">
+              <span id="auto-refresh-date">{{ date }}</span>
+              <span id="auto-refresh-time">{{ time }}</span>
+            </div>
+          </div>
+          <div class="health_portrait">
+            <img src="v2/static/img/green_bg.gif" alt="" class="health_portrait_bg">
+            <img src="{{ avatar }}" alt="" class="health_portrait_avatar" id="info-avatar">
+          </div>
+          <div class="health_details">
+            <ul>
+              <li>
+                <span class="w-title">姓名</span>：
+                <span class="w-con" id="info-name">{{ name }}</span>
+              </li>
+              <li>
+                <span class="w-title">性别</span>：
+                <span class="w-con" id="info-gender">{{ gender }}</span>
+              </li>
+              <li>
+                <span class="w-title">学工号</span>：
+                <span class="w-con" id="info-id">{{ id }}</span>
+              </li>
+              <!---->
+              <li>
+                <span class="w-title">学院</span>：
+                <span class="w-con" id="info-affiliate">{{ affiliate }}</span>
+              </li>
+              <li>
+                <span class="w-title">辅导员</span>：
+                <span class="w-con" id="info-counselor">{{ counselor }}</span>
+              </li>
+              <li>
+                <span class="w-title">辅导员电话</span>：
+                <span class="w-con" id="info-phone">{{ phone }}</span>
+              </li>
+              <!---->
+              <!---->
+            </ul>
+            <!---->
+          </div>
+          <p class="health_but">允许通行</p>
+        </div>
+        <div class="health_bot">
+          <img src="v2/static/img/ditu.e0610782.png" alt="">
+        </div>
+      </div>
+  </body>
+
+  <script type="text/javascript">radioButtonOnClick('cxk-span', 'rxk-span');</script>
+
+  <script type="text/javascript">
+  Date.prototype.format = function(fmt) {
+    var o = {
+      "y+": this.getFullYear,
+      "M+": this.getMonth() + 1,
+      "d+": this.getDate(),
+      "h+": this.getHours(),
+      "m+": this.getMinutes(),
+      "s+": this.getSeconds()
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o) if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+  }
+  document.getElementById('auto-refresh-date').innerHTML = (new Date()).format('yyyy年MM月dd日');
+  document.getElementById('auto-refresh-time').innerHTML = (new Date()).format('hh:mm:ss');
+  setInterval("document.getElementById('auto-refresh-date').innerHTML = (new Date()).format('yyyy年MM月dd日')", 1000);
+  setInterval("document.getElementById('auto-refresh-time').innerHTML = (new Date()).format('hh:mm:ss')", 1000);
+  </script>
+
+  <script type="text/javascript">
+    (() => {
+      function getQueryFromString(q, k, decodeFunc) {
+        for (let kv of q.split("&")) {
+          let kvs = kv.split("=");
+          if (kvs.length === 2 && kvs[0] === k) {
+            return decodeFunc(kvs[1]);
+          }
+        }
+        return "";
+      }
+      let hash = window.atob(window.location.hash.slice(1));
+      if (hash.startsWith("qbegin=1&") && hash.endsWith("&qend=1")) {
+        let decodeFunc = decodeURIComponent;
+        let avatar = getQueryFromString(hash, "avatar", decodeFunc);
+        let name = getQueryFromString(hash, "name", decodeFunc);
+        let gender = getQueryFromString(hash, "gender", decodeFunc);
+        let id = getQueryFromString(hash, "id", decodeFunc);
+        let affiliate = getQueryFromString(hash, "affiliate", decodeFunc);
+        let counselor = getQueryFromString(hash, "counselor", decodeFunc);
+        let phone = getQueryFromString(hash, "phone", decodeFunc);
+        let type = getQueryFromString(hash, "type", decodeFunc);
+        document.getElementById("info-avatar").setAttribute("src", avatar);
+        document.getElementById("info-name").innerHTML = name;
+        document.getElementById("info-gender").innerHTML = gender;
+        document.getElementById("info-id").innerHTML = id;
+        document.getElementById("info-affiliate").innerHTML = affiliate;
+        document.getElementById("info-counselor").innerHTML = counselor;
+        document.getElementById("info-phone").innerHTML = phone;
+        if (type === "rxk") {
+          radioButtonOnClick('rxk-span', 'cxk-span');
+        } else {
+          radioButtonOnClick('cxk-span', 'rxk-span');
+        }
+      }
+    })();
+  </script>
+
+</html>
