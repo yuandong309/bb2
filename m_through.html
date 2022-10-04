@@ -53,10 +53,10 @@
 
   <script>
     function radioButtonOnClick(active, inactive) {
-      let activeSpan = document.getElementById(active);
-      let inactiveSpan = document.getElementById(inactive);
-      activeSpan.setAttribute("style", "background-color: #025098; border-color: #025098; color: #FFF;");
-      inactiveSpan.setAttribute("style", "background-color: #FFF; border-color: #DCDFE6; color: #606266;");
+      document.getElementById(active).setAttribute("style", "background-color: #025098; color: #FFF;");
+      document.getElementById(inactive).setAttribute("style", "background-color: #FFF; color: #606266;");
+      document.getElementById("text-" + active).setAttribute("style", "");
+      document.getElementById("text-" + inactive).setAttribute("style", "display: none;");
     }
   </script>
   
@@ -81,7 +81,10 @@
           <img src="v2/static/img/bgjian.aa1b69b4.png" alt="" class="W_img">
           <div class="health_head">
             <p class="health_p">
-              <img src="v2/static/img/title.33abfbf8.png" alt="" class="heade_title">出校码</p>
+              <img src="v2/static/img/title.33abfbf8.png" alt="" class="heade_title">
+              <span id="text-cxk-span">出校码</span>
+              <span id="text-rxk-span" style="display: none;">入校码</span>
+            </p>
             <div class="headlth_date">
               <span id="auto-refresh-date">{{ date }}</span>
               <span id="auto-refresh-time">{{ time }}</span>
